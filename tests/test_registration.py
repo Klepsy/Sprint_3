@@ -10,8 +10,10 @@ class TestRegistration():
         driver.find_element(*L.NAME_INPUT).send_keys(faker.name())
         driver.find_element(*L.MAIL_INPUT).send_keys(faker.email())
         driver.find_element(*L.PASSWORD_INPUT).send_keys("qwerty12345")
-        assert driver.find_element(*L.MAIL_INPUT).get_attribute("value") != None
         driver.find_element(*L.REGISTER_BUTTON).click()
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(L.LOGIN_BUTTON))
+        assert driver.find_element(*L.MAIL_INPUT).get_attribute("value") != None
+        assert driver.find_element(*L.LOGIN_BUTTON) != None
 
 
 
